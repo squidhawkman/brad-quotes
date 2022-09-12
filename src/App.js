@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { GlobalStyles } from './Components/Styles/Global';
+import QuoteBox from "./Components/QuoteBox";
+import { ThemeProvider } from 'styled-components';
+import { useState } from 'react';
+import { Container } from './Components/Styles/Container.styled';
+
 
 function App() {
+  const [themeColor, setThemeColor] = useState('brown');
+
+  const theme = {
+    color: themeColor
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+    <GlobalStyles />
+    <Container>
+        <QuoteBox theme={theme} setThemeColor={setThemeColor}/>
+        <p style={{color: "white"}}>by squidhawkman</p>
+        </Container>
+        </ThemeProvider>
   );
 }
 
